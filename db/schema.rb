@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_165311) do
+ActiveRecord::Schema.define(version: 2022_03_22_172809) do
 
   create_table "bulletins", force: :cascade do |t|
     t.string "subject", limit: 400, null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2022_03_22_165311) do
     t.string "list_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 2022_03_22_165311) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
 end

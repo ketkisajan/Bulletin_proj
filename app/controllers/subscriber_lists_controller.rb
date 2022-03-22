@@ -16,7 +16,7 @@ class SubscriberListsController < ApplicationController
 
   def create 
     @subscriberList = SubscriberList.new(subscriberList_params)
-    # # @subscriberList.user = current_user
+    @subscriberList.user = User.first
     if @subscriberList.save
       flash[:success] = "Subscriber list was created succesfully."
       redirect_to @subscriberList
