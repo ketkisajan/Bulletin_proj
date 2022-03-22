@@ -1,32 +1,5 @@
 <h1> Subscriber Lists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th><strong> Name </strong></th>
-      <th><strong> Type </strong></th>
-      <th><strong> Actions </strong></th>
-    </tr>
-  </thead>
-
-  <tbody> 
-  <% @subscriberLists.each do |subscriberList| %>
-  <tr>
-   <td><%= subscriberList.list_name %></td>
-   <td><%= subscriberList.list_type %></td>
-<td>
-           <%= link_to "View", subscriber_list_path(subscriberList), class: "btn btn-outline-success" %>
-            <%= link_to "Edit", edit_subscriber_list_path(subscriberList), class: "btn btn-outline-info" %>
-            <%= link_to "Delete", subscriber_list_path(subscriberList), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-         
-</td>
-
-  </tr>
-
-  <% end %>
-
-
-  </tbody>
-</table>
+<%= render 'subscriber_list', obj: @subscriberLists %>
 
 <%= link_to "Create New Subscriber List", new_subscriber_list_path %>

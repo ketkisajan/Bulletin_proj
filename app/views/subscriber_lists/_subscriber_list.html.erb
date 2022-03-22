@@ -1,0 +1,62 @@
+<div class = "container">
+<% obj.each do |subscriberList| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="article-title">
+          <%= link_to subscriberList.list_name, subscriber_list_path(subscriberList) %>
+        </div>
+        <div class="article-body">
+          <%= subscriberList.list_type %>
+        
+  <div class="article-meta-details">
+
+  <%
+=begin%>
+ <% if obj == @articles%>
+            <small>Created by: <%= link_to article.user.username, user_path(article.user) if article.user %></small>  
+          </div> 
+          <% end %> 
+<%
+=end%>
+
+        </div>
+      
+  <%
+=begin%>
+ <% if article.categories.any? %>
+          <p>Categories: <%= render article.categories %></p>
+        <% end %>  
+<%
+=end%>
+
+      
+ <%
+=begin%>
+ <% if logged_in? && (current_user == article.user || current_user.admin? ) %>  
+<%
+=end%>
+
+          <div class="article-actions">
+           <%= link_to "View", subscriber_list_path(subscriberList), class: "btn btn-outline-success" %>
+            <%= link_to "Edit", edit_subscriber_list_path(subscriberList), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", subscriber_list_path(subscriberList), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+         
+          </div>
+       
+ <%
+=begin%>
+ <% end %>  
+<%
+=end%>
+
+
+<div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(subscriberList.created_at) %> ago, 
+            edited <%= time_ago_in_words(subscriberList.updated_at) %> ago</small>
+          </div>
+      </div>
+    </div>
+  </div>  
+<% end %>
+</div>

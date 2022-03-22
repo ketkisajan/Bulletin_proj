@@ -18,7 +18,7 @@ class SubscriberListsController < ApplicationController
     @subscriberList = SubscriberList.new(subscriberList_params)
     # # @subscriberList.user = current_user
     if @subscriberList.save
-      flash[:notice] = "Subscriber list was created succesfully."
+      flash[:success] = "Subscriber list was created succesfully."
       redirect_to @subscriberList
     else 
       render 'new'
@@ -31,7 +31,7 @@ class SubscriberListsController < ApplicationController
 
   def update
     if @subscriberList.update(subscriberList_params)
-      flash[:notice] = "Article was updated successfully"
+      flash[:success] = "Article was updated successfully"
       redirect_to @subscriberList
    else
     render 'edit'
