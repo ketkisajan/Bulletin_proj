@@ -1,0 +1,51 @@
+
+  
+  <div class="card-body">
+      <div class="well well-lg">
+        <div class="article-title">
+          <%= subscriber.name %>
+        </div>
+        <div class="article-body">
+          <%= subscriber.email %>
+        
+  <div class="article-meta-details">
+
+ 
+        </div>
+      
+  
+
+
+          <div class="article-actions">
+            <%= link_to "Edit", edit_subscriber_path(subscriber), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", subscriber_path(subscriber), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+         
+          </div>
+       
+<%
+=begin%>
+ 
+ <% end %>   
+<%
+=end%>
+
+
+
+<div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(subscriber.created_at) %> ago, 
+            edited <%= time_ago_in_words(subscriber.updated_at) %> ago</small>
+          </div>
+      </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+

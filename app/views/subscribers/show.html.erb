@@ -1,0 +1,18 @@
+<h1 class="text-center">Subscriber :  <%= @subscriber.name %></h1>
+<div align="center">
+  <% if logged_in?%>
+    <div class="row">
+      <span class="badge"><%= link_to "Edit subscriber name", edit_subscriber_path(@subscriber) %></span>
+    </div>
+  <% end %>
+  <%
+=begin%>
+ <%= will_paginate @subscriber_subLists %>
+</div>
+<%= render 'subscriber_lists/subscriber_list', obj: @subscriber_subsLists %>
+<div align="center">
+  <%= will_paginate @subscriber_subLists %>
+</div> 
+<%
+=end%>
+</div>

@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   resources :subscriber_lists
   get 'signup', to: "users#new"
   resources :users, except: [:new]
-
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create' 
+  delete 'logout', to: 'sessions#destroy'
+  resources :subscribers, except: [:destroy]
 end

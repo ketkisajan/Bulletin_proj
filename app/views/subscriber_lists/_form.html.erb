@@ -19,19 +19,13 @@
           <%= f.text_area :list_type, rows: 4, class: "form-control", placeholder: "Type of Subscriber list" %>
         </div>
       </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2">
-         
- <%
-=begin%>
- <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-              <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text } %>
-            <% end %>  
-<%
-=end%>
-
-          </div>
+       <div class="form-group">
+        <div class="control-label col-sm-2">
+           <%= f.label :subscriber, class: "col-2 col-form-label text-light" %>
+        </div>
+        <div class="col-sm-8">
+           <%= f.collection_select(:subscriber_ids, Subscriber.all, :id, :name,
+            { prompt: "Make your selection from the list below "}, { multiple: true, size: 7, class: "custom-select shadow rounded" }) %>
         </div>
       </div>
       <div class="form-group">
@@ -43,3 +37,4 @@
     
   </div>
 </div>
+

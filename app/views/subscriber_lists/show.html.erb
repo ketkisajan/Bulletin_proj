@@ -13,20 +13,14 @@
           <%= simple_format(@subscriberList.list_type)%>
         </div>
       
-  <%
-=begin%>
- <% if @article.categories.any? %>
-          <p>Categories: <%= render @article.categories %></p>
-        <% end %>  
-<%
-=end%>
+
 
         
- <%
-=begin%>
- <% if logged_in? && (current_user == @article.user || current_user.admin?) %>  
-<%
-=end%>
+ 
+
+ <% if logged_in? && (current_user == @subscriberList.user || current_user.admin?) %>   
+
+
 
           <div class="article-actions">
             <%= link_to "Edit", edit_subscriber_list_path(@subscriberList), class: "btn btn-outline-info" %> |
@@ -34,12 +28,10 @@
             <%= link_to "Return to Subscriber lists", subscriber_lists_path, class: "btn btn-outline-info" %>
          
           </div>
-<%
-=begin%>
+
         
  <% end %>  
-<%
-=end%>
+
 
 
 
@@ -59,17 +51,26 @@
 <div class="card">
 </div>
 
-  <div class="card-body">
-    <a href="#" class="card-link">Go to Manage Subscribers</a>
+<div class="card-body">
+  <h3>Manage Subscribers</h3>
+  <%= link_to "Add a new subscriber", new_subscriber_path(:subl => @subscriberList), class: "btn btn-outline-info" %> 
   </div>
-  <div class="card-body">
+
+<% if @subscriberList.subscribers.any? %>
   
-    <h5 class="card-title">View | Add | Update | Delete subscribers for this list</h5>
+    <div class="card-body">
+  
+    <h5 class="card-title">View | Update | Delete subscribers for this list</h5>
    
   </div>
+  </div>
+  
+    <%= render @subscriberList.subscribers %>
+  
+  
+<% end %>
 
 
-</div>
 </div>
 </div>
 </div>

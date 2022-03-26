@@ -31,11 +31,9 @@
 =end%>
 
       
- <%
-=begin%>
- <% if logged_in? && (current_user == article.user || current_user.admin? ) %>  
-<%
-=end%>
+
+ <% if logged_in? && (current_user == subscriberList.user || current_user.admin? ) %>  
+
 
           <div class="article-actions">
            <%= link_to "View", subscriber_list_path(subscriberList), class: "btn btn-outline-success" %>
@@ -44,11 +42,9 @@
          
           </div>
        
- <%
-=begin%>
+
  <% end %>  
-<%
-=end%>
+
 
 
 <div class="card-footer text-muted">

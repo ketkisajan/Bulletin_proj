@@ -1,13 +1,15 @@
 class SubscriberListsController < ApplicationController 
 
-  before_action :set_article, only: [:show,:edit, :update, :destroy]
+  before_action :set_subscriberList, only: [:show,:edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show 
     @subscriberList = SubscriberList.find(params[:id])
   end 
 
   def index 
-    @subscriberLists = SubscriberList.all
+    @subscriberLists = SubscriberList.paginate(page: params[:page], per_page: 5)
   end
 
   def new 
@@ -16,7 +18,7 @@ class SubscriberListsController < ApplicationController
 
   def create 
     @subscriberList = SubscriberList.new(subscriberList_params)
-    @subscriberList.user = User.first
+    @subscriberList.user = current_user
     if @subscriberList.save
       flash[:success] = "Subscriber list was created succesfully."
       redirect_to @subscriberList
@@ -45,12 +47,19 @@ class SubscriberListsController < ApplicationController
 
   private 
 
-  def set_article 
+  def set_subscriberList 
     @subscriberList = SubscriberList.find(params[:id])
   end 
 
   def subscriberList_params 
-    params.require(:subscriber_list).permit(:list_name, :list_type)
+    params.require(:subscriber_list).permit(:list_name, :list_type, subscriber_ids: [])
   end 
+
+  def require_same_user
+    if current_user != @article.user && !current_user.admin?
+      flash[:danger] = "You can only edit or delete your own subscriber list"
+      redirect_to root_path
+    end
+  end
 
 end

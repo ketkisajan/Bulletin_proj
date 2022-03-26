@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Welcome to the Alpha Blog #{@user.username}"
+      flash[:success] = "Welcome to the  #{@user.username}"
       redirect_to user_path(@user)
     else
       render 'new'
@@ -28,21 +28,20 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "Your account was updated successfully"
-      redirect_to articles_path
+      redirect_to subscriber_lists_path
     else
       render 'edit'
     end
   end
    
   def show
-    @user_lists = @user.subscriber_lists
-    # @user_lists = @user.articles.paginate(page: params[:page], per_page: 5)
+     @user_lists = @user.subscriber_lists.paginate(page: params[:page], per_page: 5)
   end
   
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:danger] = "User and all articles created by user have been deleted"
+    flash[:danger] = "User and all subscriber lists created by user have been deleted"
     redirect_to users_path
   end
   
