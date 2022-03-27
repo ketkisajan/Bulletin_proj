@@ -2,7 +2,7 @@ class SubscriberListsController < ApplicationController
 
   before_action :set_subscriberList, only: [:show,:edit, :update, :destroy]
   before_action :require_user, except: [:index, :show]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy, :show]
 
   def show 
     @subscriberList = SubscriberList.find(params[:id])
@@ -56,8 +56,8 @@ class SubscriberListsController < ApplicationController
   end 
 
   def require_same_user
-    if current_user != @article.user && !current_user.admin?
-      flash[:danger] = "You can only edit or delete your own subscriber list"
+    if current_user != @subscriberList.user && !current_user.admin?
+      flash[:danger] = "You can only view, edit or delete your own subscriber list"
       redirect_to root_path
     end
   end

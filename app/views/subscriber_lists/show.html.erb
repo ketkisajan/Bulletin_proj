@@ -24,16 +24,16 @@
 
           <div class="article-actions">
             <%= link_to "Edit", edit_subscriber_list_path(@subscriberList), class: "btn btn-outline-info" %> |
-            <%= link_to "Delete", subscriber_list_path(@subscriberList), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %> |
-            <%= link_to "Return to Subscriber lists", subscriber_lists_path, class: "btn btn-outline-info" %>
+            <%= link_to "Delete", subscriber_list_path(@subscriberList), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %> 
+           
          
           </div>
 
         
  <% end %>  
-
-
-
+<div class="article-actions">
+ <%= link_to "Return to Subscriber lists", subscriber_lists_path, class: "btn btn-outline-info" %>
+</div>
 
 <div class="card-footer text-muted">
             <small>Created <%= time_ago_in_words(@subscriberList.created_at) %> ago, 

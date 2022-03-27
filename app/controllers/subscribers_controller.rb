@@ -23,7 +23,7 @@ class SubscribersController < ApplicationController
     @subscriber.subscriber_list_ids = [params[:subscriber][:subl]]
     if @subscriber.save 
       flash[:notice] = "Subscriber was succesfully created" 
-      redirect_to @subscriber 
+      redirect_to @subscriber
     else 
       render 'new' 
     end 
@@ -42,6 +42,13 @@ class SubscribersController < ApplicationController
     render 'edit'
    end 
   end 
+
+  def destroy 
+    # byebug
+    @subscriber = Subscriber.find(params[:id])
+    @subscriber.destroy 
+    redirect_to subscriber_lists_path
+  end
 
   private 
 

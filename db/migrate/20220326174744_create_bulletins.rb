@@ -6,10 +6,8 @@ class CreateBulletins < ActiveRecord::Migration[5.2]
       t.text :body
       t.text :header
       t.text :footer
-      t.integer :subs_list_id
       t.string :sent_flag
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
   end
 end

@@ -1,0 +1,62 @@
+<h4>Bulletins sent by <h3><%= current_user.username %></h3></h4>
+
+<div align="center">
+  <%= will_paginate @bulletins%>
+</div>
+  <% @bulletins.each do |bulletin| %>
+  <div class="card-body">
+      <div class="well well-lg">
+        <div class="article-title">Subject:
+          <%= bulletin.subject %>
+        </div>
+        
+  <div class="article-meta-details">
+
+ 
+        </div>
+      
+  
+
+
+          <%
+=begin%>
+ <div class="article-actions">
+            <%= link_to "Edit", edit_subscriber_path(subscriber), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", subscriber_path(subscriber), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+         
+          </div> 
+<%
+=end%>
+       
+<%
+=begin%>
+ 
+ <% end %>   
+<%
+=end%>
+
+
+
+<div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(bulletin.created_at) %> ago, 
+            edited <%= time_ago_in_words(bulletin.updated_at) %> ago</small>
+          </div>
+      </div>
+
+      </div>
+
+      <% end %>
+      <div align="center">
+  <%= will_paginate @bulletins%>
+</div>
+
+
+
+
+
+
+
+
+
+
+

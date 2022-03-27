@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_24_173119) do
+ActiveRecord::Schema.define(version: 2022_03_27_091852) do
 
   create_table "bulletins", force: :cascade do |t|
     t.string "subject", limit: 400, null: false
@@ -18,10 +18,15 @@ ActiveRecord::Schema.define(version: 2022_03_24_173119) do
     t.text "body"
     t.text "header"
     t.text "footer"
-    t.integer "subs_list_id"
     t.string "sent_flag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "sublist_bulletins", force: :cascade do |t|
+    t.integer "subscriber_list_id"
+    t.integer "bulletin_id"
   end
 
   create_table "sublist_subs", force: :cascade do |t|

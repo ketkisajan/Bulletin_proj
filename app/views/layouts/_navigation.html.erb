@@ -29,11 +29,14 @@
               <li role="separator" class="divider"></li>
               <li><%= link_to "Add new Subscriber List", new_subscriber_list_path %></li>
               <li role="separator" class="divider"></li> 
-              <li><%= link_to "Send Bulletins", '#' %></li>
+              <li><%= link_to "Send Bulletins", new_bulletin_path %></li>
               <li role="separator" class="divider"></li>         
             </ul>
         
  </li>
+
+ <li><%= link_to "Send Bulletin", new_bulletin_path,class: "nav-link" %></li>
+ 
 
        
  <% end %>  
