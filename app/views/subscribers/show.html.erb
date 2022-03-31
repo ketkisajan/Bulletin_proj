@@ -1,4 +1,4 @@
-<h1 class="text-center">Subscriber Details</h1>
+<p class="bg-primary text-center">Subscriber Details</p>
 <div align="center">
   <% if logged_in?%>
    <div class="card-body">
@@ -50,4 +50,9 @@
 </div> 
 <%
 =end%>
+</div>
+<div class="card-footer text-muted">
+<div class="button-55"><b>
+  [ <%= link_to "Return to Subscribers", subscribers_path %> ]</b>
+</div>
 </div>

@@ -1,4 +1,4 @@
-<h1 align="center">Listing all subscribers</h1>
+<p class="bg-primary text-center"><mark><%= current_user.username %></mark>'s Subscribers</p>
 <div align="center">
 
 
@@ -12,6 +12,10 @@
 </div>
 
 </div>
-
+<div class="card-footer text-muted">
+<div class="button-55"><b>
+  [ <%= link_to "Return to Subscriber lists", subscriber_lists_path %> ]</b>
+</div>
+</div> 
 
 

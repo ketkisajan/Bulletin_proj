@@ -1,0 +1,2 @@
+class CrituserController < ApplicationController
+end

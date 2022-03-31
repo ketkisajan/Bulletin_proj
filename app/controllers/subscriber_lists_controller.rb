@@ -9,7 +9,12 @@ class SubscriberListsController < ApplicationController
   end 
 
   def index 
-    @subscriberLists = SubscriberList.paginate(page: params[:page], per_page: 5)
+    if !current_user.admin?
+    @user_sublists = current_user.subscriber_lists
+   else
+    @user_sublists = SubscriberList.all
+   end
+    @subscriberLists = @user_sublists.paginate(page: params[:page], per_page: 5)
   end
 
   def new 

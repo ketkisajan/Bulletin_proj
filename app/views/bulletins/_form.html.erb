@@ -1,5 +1,6 @@
 <%= render 'shared/errors', obj: @bulletin %>
-
+<div class="panel panel-default">
+<div class="panel-body">
 <div class="card-body">
 <%= form_for(@bulletin, :html => {class: "form-horizontal", role: "form"}) do |f| %>
   <div class="form-group">
@@ -25,9 +26,9 @@
     <div class="control-label col-sm-2">
            <%= f.label :subscriber, class: "col-2 col-form-label text-light" %><b>lists</b>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-8">
            <%= f.collection_select(:subscriber_list_ids, @user_lists, :id, :list_name,
-            { prompt: "Select subscriber lists "}, { multiple: true, size: 7, class: "custom-select shadow rounded" }) %>
+            { prompt: "Select subscriber lists "}, { multiple: true, size: 7, class: "form-control" }) %>
         </div>
   </div>
 
@@ -35,36 +36,34 @@
     <div class="control-label col-sm-2">
            <%= f.label :Criteria, class: "col-2 col-form-label text-light" %>
         </div>
-        <%
-=begin%>
- <div class="col-sm-2">
-           <%= f.collection_select(:subscriber_list_ids, @user_lists, :id, :list_name,
-            { prompt: "Select subscriber lists "}, { multiple: true, size: 7, class: "custom-select shadow rounded" }) %>
+     
+ <div class="col-sm-8">
+           <%= f.collection_select(:crituser_ids, Crituser.all, :id, :user_criteria,
+            { prompt: "Select user criteria "}, { multiple: true, size: 7, class: "form-control" }) %>
         </div> 
-<%
-=end%>
+
   </div>
   
-  <%
-=begin%>
- <%=f.hidden_field 'subl', :value => params[:subl] %> 
-<%
-=end%>
 
   <div class="form-group">
-    <div class="col-sm-8 col-sm-offset-2">
-      <%= f.submit class: "btn btn-primary btn-lg" %>
-    </div>
+<button class="button-78" role="button">Send Bulletin
+       <% f.submit %>
+      </button>
   </div>
 
  
+     
+    
 
 <% end %>
-<div class="col-sm-8">
- <%= link_to "Cancel and Return to Subscriber list", subscribers_path%>
+</div>
  </div>
+ </div>
+<div class="button-55"><b>
+      [ <%= link_to "Cancel and Return to Subscriber lists", subscriber_lists_path %> ]    </b>  
+    </div>
 
- </div>
+ 
 
 
 

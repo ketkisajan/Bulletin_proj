@@ -35,7 +35,12 @@ class UsersController < ApplicationController
   end
    
   def show
-     @user_lists = @user.subscriber_lists.paginate(page: params[:page], per_page: 5)
+    if !@user.admin?
+     @user_lists1 = @user.subscriber_lists
+    else 
+      @user_lists1 = SubscriberList.all
+    end 
+    @user_lists = @user_lists1.paginate(page: params[:page], per_page: 5)
   end
   
   def destroy

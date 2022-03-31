@@ -9,7 +9,12 @@ class SubscribersController < ApplicationController
   end 
 
   def index
-    @subscribers = Subscriber.paginate(page: params[:page], per_page: 5) 
+    if !current_user.admin? 
+      @user_subs = current_user.subscribers
+    else 
+      @user_subs = Subscriber.all 
+    end 
+      @subscribers = @user_subs.paginate(page: params[:page], per_page: 5) 
   end 
 
   def show 
@@ -20,6 +25,7 @@ class SubscribersController < ApplicationController
   
   def create 
     @subscriber = Subscriber.new(subscriber_params) 
+    @subscriber.user = current_user
     @subscriber.subscriber_list_ids = [params[:subscriber][:subl]]
     if @subscriber.save 
       flash[:notice] = "Subscriber was succesfully created" 
@@ -47,7 +53,7 @@ class SubscribersController < ApplicationController
     # byebug
     @subscriber = Subscriber.find(params[:id])
     @subscriber.destroy 
-    redirect_to subscriber_lists_path
+    redirect_to subscribers_path
   end
 
   private 

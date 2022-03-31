@@ -1,5 +1,5 @@
 class Subscriber < ApplicationRecord 
-
+  belongs_to :user
   has_many :sublist_subs
   has_many :subscriber_lists, through: :sublist_subs
   validates :name, presence: true, length: { minimum: 3, maximum: 25 }

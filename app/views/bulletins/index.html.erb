@@ -1,5 +1,5 @@
-<h4>Bulletins sent by <h3><%= current_user.username %></h3></h4>
 
+<p class="bg-primary text-center">Bulletins sent by <mark><%= current_user.username %></mark></p>
 <div align="center">
   <%= will_paginate @bulletins%>
 </div>
@@ -8,37 +8,20 @@
       <div class="well well-lg">
         <div class="article-title">Subject:
           <%= bulletin.subject %>
-        </div>
+           </div>
         
   <div class="article-meta-details">
-
+<h3> <%= link_to "Go to bulletin", bulletin_path(bulletin), class: "btn btn-outline-info" %> </h3>
+          
  
-        </div>
+  </div>
+   <div class="article-meta-details"> 
+  </div>
       
-  
-
-
-          <%
-=begin%>
- <div class="article-actions">
-            <%= link_to "Edit", edit_subscriber_path(subscriber), class: "btn btn-outline-info" %>
-            <%= link_to "Delete", subscriber_path(subscriber), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-         
-          </div> 
-<%
-=end%>
-       
-<%
-=begin%>
- 
- <% end %>   
-<%
-=end%>
-
-
 
 <div class="card-footer text-muted">
-            <small>Created <%= time_ago_in_words(bulletin.created_at) %> ago, 
+            <small>Sent by <%= bulletin.user.username %> ,
+            <%= time_ago_in_words(bulletin.created_at) %> ago, 
             edited <%= time_ago_in_words(bulletin.updated_at) %> ago</small>
           </div>
       </div>
@@ -49,6 +32,18 @@
       <div align="center">
   <%= will_paginate @bulletins%>
 </div>
+
+<div class="card-footer text-muted">
+<div class="button-55"><b>
+<% if @bulletins.empty? %> 
+
+  <%= link_to "No Bulletins sent, start by sending one!", new_bulletin_path %> </b>
+<% else %>
+ [ <%= link_to "Send another Bulletin!", new_bulletin_path %> ]</b>
+<% end %>
+</div>
+</div>
+
 
 
 

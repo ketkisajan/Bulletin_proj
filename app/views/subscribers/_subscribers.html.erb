@@ -32,7 +32,8 @@
 
 
 <div class="card-footer text-muted">
-            <small>Created <%= time_ago_in_words(subscriber.created_at) %> ago, 
+            <small>Created by <%= subscriber.user.username %>, 
+            <%= time_ago_in_words(subscriber.created_at) %> ago and 
             edited <%= time_ago_in_words(subscriber.updated_at) %> ago</small>
           </div>
       </div>

@@ -1,5 +1,10 @@
 <%= render 'shared/errors', obj: @subscriberList %>
 
+
+
+
+<div class="panel panel-default">
+<div class="panel-body">
 <div class="row">
   <div class="col-xs-12">
     <%= form_for(@subscriberList, :html => { class: "form-horizontal", role: "form" }) do |f| %>
@@ -21,20 +26,28 @@
       </div>
        <div class="form-group">
         <div class="control-label col-sm-2">
-           <%= f.label :subscriber, class: "col-2 col-form-label text-light" %>
+           <%= f.label :subscriber %>
         </div>
+        
         <div class="col-sm-8">
-           <%= f.collection_select(:subscriber_ids, Subscriber.all, :id, :name,
-            { prompt: "Make your selection from the list below "}, { multiple: true, size: 7, class: "custom-select shadow rounded" }) %>
+           <%= f.collection_select(:subscriber_ids, current_user.subscribers, :id, :name,
+            { prompt: "Make your selection from the list below "}, { multiple: true, size: 7, class: "form-control" }) %>
         </div>
+        
       </div>
       <div class="form-group">
         <div class="col-sm-8 col-sm-offset-2">
-          <%= f.submit class: "btn btn-primary btn-lg" %>
+         <button class="button-78" role="button"> Create List
+          <% f.submit %>
+      </button>
         </div>
+       
+     
       </div>
     <% end %>
     
   </div>
+</div>
+</div>
 </div>
 

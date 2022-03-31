@@ -1,4 +1,5 @@
-<h1 align="center">All Users</h1>
+<p class="bg-primary text-center">User Details</p>
+
 
 <div align="center">
   
@@ -7,6 +8,7 @@
 
 
   <% @users.each do |user| %>
+  <% if (logged_in? && user == current_user) || (logged_in? && current_user.admin?)%> 
     <ul class="listing">
       <div class="row">
         <div class="well col-md-4 col-md-offset-4">
@@ -16,27 +18,23 @@
           <li><small><%= pluralize(user.subscriber_lists.count, "subscriber_list") if user.subscriber_lists %></small></li>
          
 
- <% if logged_in? %> 
-<% if user == current_user %>
+ 
+
   <li><%= link_to "Edit user", edit_user_path(user), class: "btn btn-outline-info"%></li>
-<% end %>
- <% if current_user.admin? %>  
+
 
 
       <li><%= link_to "Delete user", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete the user and all associated subscriber lists?"} %></li>
         
-
- <% end %>  
-
-
- <% end %> 
-
-
-        </div>
+ </div>
         </div>
   
     </ul>
+<% end %> 
+
+       
   <% end %>
+
 
 
  <%= will_paginate %>  

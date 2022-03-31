@@ -1,5 +1,15 @@
-<h1 align="center">Log in</h1>
+<h2 align="center">Login to get started</h2>
 
+
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-lg-6">
+            <div class = "container1">
+            <div class="jumbotron">
+            <div class = "jumboback">
+            <div class = "shadow-lg p-3 mb-5 bg-white rounded">
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
 <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
   <div class="form-group">
     <div class="control-label col-sm-2">
@@ -19,10 +29,28 @@
   </div>
   <div class="form-group">
     <div class="col-sm-8 col-sm-offset-2">
-      <%= f.submit "Log in", class: "btn btn-primary btn-lg" %>
+    <button class="button-71" role="button">LOGIN
+      <% f.submit %>
+      </button>
     </div>
   </div>
 <% end %>
-<div class="col-xs-4 col-xs-offset-4">
-  [ <%= link_to "Cancel request and return to articles listing", subscriber_lists_path %> ]
+
+</div>
+</div>
+
+</div>
+
+</div>
+<div class="button-55"><b>
+  [ <%= link_to "Cancel request ", root_path %> ]</b>  
+</div> | 
+<button class="button-55" role="button"><b>
+ <%= link_to "Create account", signup_path %> </b>
+ </button>
+</div>
+
+        </div>
+    </div>
+    
 </div>

@@ -1,5 +1,6 @@
 <%= render 'shared/errors', obj: @subscriber %>
-
+<div class="panel panel-default">
+<div class="panel-body">
 <%= form_for(@subscriber, :html => {class: "form-horizontal", role: "form"}) do |f| %>
   <div class="form-group">
     <div class="control-label col-sm-2">
@@ -24,16 +25,18 @@
 
   <div class="form-group">
     <div class="col-sm-8 col-sm-offset-2">
-      <%= f.submit class: "btn btn-primary btn-lg" %>
+       <button class="button-78" role="button"> Add Subscriber
+          <% f.submit %>
+      </button>
     </div>
   </div>
 
  
 
 <% end %>
-<div class="col-sm-8">
- <%= link_to "Cancel and Return to Subscriber list", subscribers_path%>
- </div>
 
+
+</div>
+</div>
 
 

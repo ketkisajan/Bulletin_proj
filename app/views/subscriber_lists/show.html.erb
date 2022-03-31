@@ -1,5 +1,4 @@
-<h1 align="center" style="color:Black">Subscriber List Details</h1>
-
+<p class="bg-primary text-center">Subscriber List Details</p>
 
 <div class = "container">
 
@@ -31,9 +30,19 @@
 
         
  <% end %>  
-<div class="article-actions">
+<%
+=begin%>
+ <div class="article-actions">
  <%= link_to "Return to Subscriber lists", subscriber_lists_path, class: "btn btn-outline-info" %>
+</div> 
+<%
+=end%>
+
+<div class="card-footer text-muted">
+<div class="button-55"><b>
+  [ <%= link_to "Return to Subscriber lists", subscriber_lists_path %> ]</b>
 </div>
+</div> 
 
 <div class="card-footer text-muted">
             <small>Created <%= time_ago_in_words(@subscriberList.created_at) %> ago, 
@@ -53,14 +62,17 @@
 
 <div class="card-body">
   <h3>Manage Subscribers</h3>
-  <%= link_to "Add a new subscriber", new_subscriber_path(:subl => @subscriberList), class: "btn btn-outline-info" %> 
+  <div class="button-62">
+   <%= link_to "Add a new subscriber", new_subscriber_path(:subl => @subscriberList) %> 
+    </div>
+  
   </div>
 
 <% if @subscriberList.subscribers.any? %>
   
     <div class="card-body">
   
-    <h5 class="card-title">View | Update | Delete subscribers for this list</h5>
+    <h5 class="card-title">Add | Update | Delete subscribers for this list</h5>
    
   </div>
   </div>

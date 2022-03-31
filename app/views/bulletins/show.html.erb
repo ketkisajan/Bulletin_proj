@@ -1,0 +1,44 @@
+<p class="bg-primary text-center">Bulletin Details</p>
+
+
+<div class = "container">
+
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+         <div class="article-title">
+          <%= simple_format(@bulletin.subject) %>
+        </div>
+        <div class="article-body">
+          <%= simple_format(@bulletin.body)%>
+        </div>
+      
+
+
+        
+
+<div class="article-actions">
+ <%= link_to "Return to bulletins page", bulletins_path, class: "btn btn-outline-info" %>
+</div>
+
+<div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(@bulletin.created_at) %> ago, 
+            edited <%= time_ago_in_words(@bulletin.updated_at) %> ago</small>
+          </div>
+      </div>
+    </div>
+  </div>  
+
+
+
+<div class="row">
+ <div class="col-xs-8 col-xs-offset-2">
+ <div class="well well-lg">
+<div class="card">
+</div>
+
+
+  </div>
+
+  </div>
+    </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default ">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -15,10 +15,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
        
+         <% if logged_in? %>  
+         <% if current_user.admin?%>
  <li><%= link_to "Users", users_path,class: "nav-link" %></li>
+ <% end %>
    
  
-        <% if logged_in? %>  
+      
 
 
           <li class="dropdown">
@@ -27,17 +30,38 @@
               
               <li><%= link_to "View Subscriber Lists", subscriber_lists_path,class: "nav-link" %></li>
               <li role="separator" class="divider"></li>
+              <% if !current_user.admin?%>
               <li><%= link_to "Add new Subscriber List", new_subscriber_list_path %></li>
-              <li role="separator" class="divider"></li> 
-              <li><%= link_to "Send Bulletins", new_bulletin_path %></li>
-              <li role="separator" class="divider"></li>         
+              <li role="separator" class="divider"></li>    
+              <% end %>    
             </ul>
         
  </li>
 
- <li><%= link_to "Send Bulletin", new_bulletin_path,class: "nav-link" %></li>
- 
+<% if current_user.admin?%>
+ <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Subscribers <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "View Subscribers", subscribers_path,class: "nav-link" %></li>
+              <li role="separator" class="divider"></li>      
+            </ul>
+        
+ </li>
+ <% end %>
 
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bulletin <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if !current_user.admin?%>
+              <li><%= link_to "Send Bulletin", new_bulletin_path,class: "nav-link" %></li>
+              <li role="separator" class="divider"></li>
+              <% end %>
+              <li><%= link_to "View sent Bulletins", bulletins_path %></li>
+              <li role="separator" class="divider"></li>        
+            </ul>
+        
+ </li>
        
  <% end %>  
 
@@ -46,12 +70,7 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+    
       <ul class="nav navbar-nav navbar-right">
        
 
@@ -69,9 +88,17 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Edit your profile", edit_user_path(current_user) %></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "View your profile", user_path(current_user) %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to "Delete your profile", user_path(current_user), method: :delete, data: {confirm: "Are you sure?"} %></li>
+              <%
+=begin%>
+ <li><%= link_to "View your profile", user_path(current_user) %></li>
+              <li role="separator" class="divider"></li> 
+<%
+=end%>
+              <%
+=begin%>
+ <li><%= link_to "Delete your profile", user_path(current_user), method: :delete, data: {confirm: "Are you sure?"} %></li> 
+<%
+=end%>
             </ul>
           </li>  
 

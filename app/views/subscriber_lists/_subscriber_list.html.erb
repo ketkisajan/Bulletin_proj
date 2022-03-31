@@ -1,4 +1,5 @@
 <div class = "container">
+
 <% obj.each do |subscriberList| %>
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
@@ -36,8 +37,9 @@
 
 
           <div class="article-actions">
-           <%= link_to "View", subscriber_list_path(subscriberList), class: "btn btn-outline-success" %>
+          <% if !current_user.admin?%>
             <%= link_to "Edit", edit_subscriber_list_path(subscriberList), class: "btn btn-outline-info" %>
+            <% end %>
             <%= link_to "Delete", subscriber_list_path(subscriberList), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
          
           </div>
@@ -48,11 +50,26 @@
 
 
 <div class="card-footer text-muted">
-            <small>Created <%= time_ago_in_words(subscriberList.created_at) %> ago, 
+            <small>Created by <%= subscriberList.user.username %>, 
+             <%= time_ago_in_words(subscriberList.created_at) %> ago and  
             edited <%= time_ago_in_words(subscriberList.updated_at) %> ago</small>
           </div>
       </div>
     </div>
   </div>  
 <% end %>
+
+
+<div class="card-footer text-muted">
+<div class="button-55"><b>
+<% if obj.empty? %> 
+
+  <%= link_to "No subscriber lists present, start by adding one!", new_subscriber_list_path %> </b>
+<% else %> 
+    <% if !current_user.admin?%>
+ [ <%= link_to "Add a new subscriber list", new_subscriber_list_path %> ]</b>
+ <% end %>
+<% end %>
+</div>
+</div>
 </div>

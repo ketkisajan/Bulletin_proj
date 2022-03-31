@@ -21,14 +21,22 @@ class BulletinsController < ApplicationController
   end 
 
   def index 
-    @user_bulletins = current_user.bulletins
+    if !current_user.admin?
+      @user_bulletins = current_user.bulletins
+    else 
+      @user_bulletins = Bulletin.all 
+    end
     @bulletins = @user_bulletins.paginate(page: params[:page], per_page: 5)
+  end
+
+  def show 
+    @bulletin = Bulletin.find(params[:id])
   end
 
   private 
 
   def bulletin_params 
-    params.require(:bulletin).permit(:subject, :from_address, :body, :header, :footer, subscriber_list_ids: [])
+    params.require(:bulletin).permit(:subject, :from_address, :body, :header, :footer, subscriber_list_ids: [], crituser_ids: [])
   end 
 
 
